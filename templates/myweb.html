@@ -9,25 +9,37 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background: #0f172a;
     }
 
     .glass {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
     .gradient-text {
       background: linear-gradient(90deg, #a78bfa, #38bdf8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    .card-hover {
+      transition: 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
     }
   </style>
 </head>
@@ -36,20 +48,72 @@
 <body class="text-white">
 
 
+  <!-- ================= NAVBAR ================= -->
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-white/10">
+
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- LOGO -->
+
+      <a href="/" class="flex items-center gap-3">
+
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-xl">
+          🧠
+        </div>
+
+        <span class="text-xl font-bold">
+          SixSense Coders
+        </span>
+
+      </a>
+
+
+      <!-- NAVIGATION -->
+
+      <div class="hidden md:flex items-center gap-8 text-sm">
+
+        <a href="#home" class="text-slate-300 hover:text-white">
+          Home
+        </a>
+
+        <a href="#solutions" class="text-slate-300 hover:text-white">
+          Solutions
+        </a>
+
+        <a href="#about" class="text-slate-300 hover:text-white">
+          About
+        </a>
+
+        <a href="/login"
+          class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg font-semibold">
+          Login
+        </a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+
   <!-- ================= HERO SECTION ================= -->
 
-  <section
-    class="min-h-screen bg-gradient-to-br from-[#6d28d9] to-[#0f172a] p-6 flex items-center">
+  <section id="home"
+    class="min-h-screen pt-32 pb-20 px-6 flex items-center bg-gradient-to-br from-[#6d28d9] via-[#312e81] to-[#0f172a]">
 
     <div
-      class="max-w-7xl mx-auto w-full glass rounded-[30px] p-10 md:p-16 flex flex-col md:flex-row items-center gap-10">
+      class="max-w-7xl mx-auto w-full glass rounded-[30px] p-8 md:p-16 flex flex-col md:flex-row items-center gap-12">
+
+
+      <!-- LEFT CONTENT -->
 
       <div class="flex-1">
 
         <div class="flex items-center gap-3 mb-6">
 
-          <div
-            class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-xl">
+          <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-xl">
             🧠
           </div>
 
@@ -60,58 +124,88 @@
         </div>
 
 
-        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
-          Academia-Industry
-          <br>
-          Connect
-        </h1>
-
-
-        <p class="text-xl text-slate-300 mt-4">
-          A Unified Internship & Collaboration Portal
+        <p class="text-blue-300 font-semibold mb-3">
+          SMART EDUCATION • SIH26044
         </p>
 
 
-        <div class="flex gap-4 mt-8 flex-wrap">
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
 
-          <span
-            class="px-4 py-2 bg-white/20 rounded-full text-sm">
-            Problem ID: SIH26044
+          Academia-Industry
+          <br>
+
+          <span class="gradient-text">
+            Connect
           </span>
 
-          <span
-            class="px-4 py-2 bg-blue-500/30 rounded-full text-sm">
-            Smart Education
+        </h1>
+
+
+        <p class="text-xl text-slate-300 mt-6 max-w-xl">
+
+          A unified platform connecting students,
+          companies and colleges for internships,
+          collaboration and career opportunities.
+
+        </p>
+
+
+        <!-- BUTTONS -->
+
+        <div class="flex gap-4 mt-8 flex-wrap">
+
+          <a href="/register"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-xl transition">
+
+            Get Started
+
+          </a>
+
+
+          <a href="/login"
+            class="border border-white/30 hover:bg-white/10 text-white font-bold py-3 px-8 rounded-xl transition">
+
+            Student Login
+
+          </a>
+
+        </div>
+
+
+        <!-- BADGES -->
+
+        <div class="flex gap-3 mt-8 flex-wrap">
+
+          <span class="px-4 py-2 bg-white/10 rounded-full text-sm">
+            🎓 Students
+          </span>
+
+          <span class="px-4 py-2 bg-white/10 rounded-full text-sm">
+            🏢 Companies
+          </span>
+
+          <span class="px-4 py-2 bg-white/10 rounded-full text-sm">
+            📊 Colleges
           </span>
 
         </div>
-        <div class="flex gap-4 mt-6">
-
-  <!-- LOGIN BUTTON -->
-  <a
-    href="/login"
-    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl">
-    Login
-  </a>
-
-  <!-- SIGN UP BUTTON -->
-  <a
-    href="/register"
-    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-xl">
-    Sign Up
-  </a>
-
-</div>
 
       </div>
 
+
+
+      <!-- RIGHT IMAGE -->
 
       <div class="flex-1">
 
-        <img
-          src="/static/123.jpeg"
-          class="w-full rounded-2xl"
-          alt="SixSense Coders">
+        <div class="relative">
+
+          <img
+            src="/static/123.jpeg"
+            class="w-full rounded-3xl shadow-2xl"
+            alt="SixSense Coders">
+
+        </div>
 
       </div>
 
@@ -121,142 +215,305 @@
 
 
 
-  <!-- ================= THREE ROLES SECTION ================= -->
+  <!-- ================= SOLUTION SECTION ================= -->
 
-  <section class="py-20 bg-slate-50 text-slate-900">
+  <section id="solutions" class="py-24 bg-slate-50 text-slate-900">
 
-    <h2 class="text-center text-4xl font-bold mb-12">
-      Our Solution - One Portal Three Roles
-    </h2>
+    <div class="max-w-7xl mx-auto px-6">
 
+
+      <div class="text-center mb-16">
+
+        <p class="text-purple-600 font-bold">
+          OUR SOLUTION
+        </p>
+
+        <h2 class="text-4xl md:text-5xl font-extrabold mt-2">
+          One Portal. Three Roles.
+        </h2>
+
+        <p class="text-slate-600 mt-4 max-w-2xl mx-auto">
+          A single digital ecosystem that brings students,
+          companies and colleges together.
+        </p>
+
+      </div>
+
+
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+
+        <!-- ================= STUDENT ================= -->
+
+        <div
+          class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-purple-600 card-hover">
+
+          <div class="text-5xl mb-5">
+            🎓
+          </div>
+
+          <h3 class="text-2xl font-bold text-purple-700">
+            Student Panel
+          </h3>
+
+          <p class="text-slate-600 mt-3">
+            Students can build their profile,
+            upload resumes and apply for opportunities.
+          </p>
+
+
+          <ul class="mt-6 space-y-4">
+
+            <li>
+              ✅ Manage Profile
+            </li>
+
+            <li>
+              ✅ Upload Resume
+            </li>
+
+            <li>
+              ✅ Browse Internships
+            </li>
+
+            <li>
+              ✅ Apply for Jobs
+            </li>
+
+          </ul>
+
+
+          <a href="/register"
+            class="block text-center mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl">
+
+            Student Registration
+
+          </a>
+
+        </div>
+
+
+
+        <!-- ================= COMPANY ================= -->
+
+        <div
+          class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-blue-600 card-hover">
+
+          <div class="text-5xl mb-5">
+            🏢
+          </div>
+
+          <h3 class="text-2xl font-bold text-blue-700">
+            Company Panel
+          </h3>
+
+          <p class="text-slate-600 mt-3">
+            Companies can post internships,
+            review applicants and find talented students.
+          </p>
+
+
+          <ul class="mt-6 space-y-4">
+
+            <li>
+              ✅ Post Internships
+            </li>
+
+            <li>
+              ✅ View Applicants
+            </li>
+
+            <li>
+              ✅ Shortlist Students
+            </li>
+
+            <li>
+              ✅ Hire & Collaborate
+            </li>
+
+          </ul>
+
+
+          <!-- COMPANY LOGIN -->
+
+          <a href="#"
+            class="block text-center mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl">
+
+            Company Login
+
+          </a>
+
+        </div>
+
+
+
+        <!-- ================= ADMIN ================= -->
+
+        <div
+          class="bg-white rounded-3xl p-8 shadow-xl border-t-8 border-indigo-600 card-hover">
+
+          <div class="text-5xl mb-5">
+            📊
+          </div>
+
+          <h3 class="text-2xl font-bold text-indigo-700">
+            College Admin
+          </h3>
+
+          <p class="text-slate-600 mt-3">
+            Admins can monitor students,
+            companies, internships and applications.
+          </p>
+
+
+          <ul class="mt-6 space-y-4">
+
+            <li>
+              ✅ Dashboard
+            </li>
+
+            <li>
+              ✅ Student Management
+            </li>
+
+            <li>
+              ✅ Company Management
+            </li>
+
+            <li>
+              ✅ Application Analytics
+            </li>
+
+          </ul>
+
+
+          <!-- ADMIN LOGIN -->
+
+          <a href="/admin/login"
+            class="block text-center mt-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl">
+
+            Admin Login
+
+          </a>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ================= ABOUT SECTION ================= -->
+
+  <section id="about" class="py-24 bg-slate-900">
+
+    <div class="max-w-5xl mx-auto px-6 text-center">
+
+      <p class="text-blue-400 font-bold">
+        ABOUT THE PROJECT
+      </p>
+
+      <h2 class="text-4xl md:text-5xl font-extrabold mt-3">
+        Bridging Academia & Industry
+      </h2>
+
+      <p class="text-slate-400 text-lg mt-6 leading-relaxed">
+
+        SixSense Coders aims to create a unified digital
+        ecosystem where students can discover opportunities,
+        companies can find skilled talent and colleges can
+        monitor and manage the complete internship ecosystem.
+
+      </p>
+
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+
+
+        <div class="glass rounded-2xl p-6">
+
+          <div class="text-4xl">
+            🚀
+          </div>
+
+          <h3 class="font-bold text-xl mt-4">
+            Easy Access
+          </h3>
+
+          <p class="text-slate-400 mt-2">
+            Opportunities in one place.
+          </p>
+
+        </div>
+
+
+
+        <div class="glass rounded-2xl p-6">
+
+          <div class="text-4xl">
+            🤝
+          </div>
+
+          <h3 class="font-bold text-xl mt-4">
+            Collaboration
+          </h3>
+
+          <p class="text-slate-400 mt-2">
+            Connect students and industry.
+          </p>
+
+        </div>
+
+
+
+        <div class="glass rounded-2xl p-6">
+
+          <div class="text-4xl">
+            📈
+          </div>
+
+          <h3 class="font-bold text-xl mt-4">
+            Smart Analytics
+          </h3>
+
+          <p class="text-slate-400 mt-2">
+            Track internships and applications.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="bg-slate-950 border-t border-white/10 py-8">
 
     <div
-      class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+      class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
 
+      <p class="text-slate-400 text-sm">
+        © 2026 SixSense Coders. All Rights Reserved.
+      </p>
 
-      <!-- ================= STUDENT PANEL ================= -->
-
-      <div
-        class="bg-white rounded-2xl p-8 shadow-xl border-t-8 border-purple-600">
-
-        <h3 class="text-2xl font-bold text-purple-700">
-          Student Panel 🎓
-        </h3>
-
-
-        <ul class="mt-6 space-y-4 text-left">
-
-          <li>
-            <b>Profile</b> - Manage personal details
-          </li>
-
-          <li>
-            <b>Resume</b> - Build & upload portfolio
-          </li>
-
-          <li>
-            <b>Apply</b> - Browse & apply easily
-          </li>
-
-        </ul>
-
-
-        <!-- STUDENT REGISTRATION BUTTON -->
-
-        <a
-          href="/register"
-          class="block text-center mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-xl">
-
-          Student Registration
-
-        </a>
-
-      </div>
-
-
-
-      <!-- ================= COMPANY PANEL ================= -->
-
-      <div
-        class="bg-white rounded-2xl p-8 shadow-xl border-t-8 border-blue-600">
-
-        <h3 class="text-2xl font-bold text-blue-700">
-          Company Panel 🏢
-        </h3>
-
-
-        <ul class="mt-6 space-y-4 text-left">
-
-          <li>
-            <b>Post Internship</b> - Create openings
-          </li>
-
-          <li>
-            <b>View Applicants</b> - Review profiles
-          </li>
-
-          <li>
-            <b>Hire & Collaborate</b> - Shortlist students
-          </li>
-
-        </ul>
-
-
-        <!-- COMPANY BUTTON -->
-
-        <button
-          class="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl">
-
-          Company Login
-
-        </button>
-
-      </div>
-
-
-
-      <!-- ================= COLLEGE ADMIN PANEL ================= -->
-
-      <div
-        class="bg-white rounded-2xl p-8 shadow-xl border-t-8 border-indigo-600">
-
-        <h3 class="text-2xl font-bold text-indigo-700">
-          College Admin 📊
-        </h3>
-
-
-        <ul class="mt-6 space-y-4 text-left">
-
-          <li>
-            <b>Dashboard</b> - Monitor placements
-          </li>
-
-          <li>
-            <b>Analytics</b> - Track trends
-          </li>
-
-          <li>
-            <b>NEP Report</b> - Generate reports
-          </li>
-
-        </ul>
-
-
-        <!-- ADMIN BUTTON -->
-
-        <button
-          class="w-full mt-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl">
-
-          Admin Login
-
-        </button>
-
-      </div>
-
+      <p class="text-slate-500 text-sm">
+        Academia-Industry Connect • SIH26044
+      </p>
 
     </div>
 
-  </section>
+  </footer>
 
 
 </body>

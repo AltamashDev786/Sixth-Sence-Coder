@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+
+<body class="bg-slate-100">
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="fixed left-0 top-0 h-screen w-64
+              bg-slate-950 text-white p-6">
+
+    <h1 class="text-2xl font-bold mb-10">
+        SixSense
+    </h1>
+
+
+    <nav class="space-y-3">
+
+        <a href="/admin/dashboard"
+           class="block px-4 py-3 rounded-lg
+                  hover:bg-slate-800">
+
+            Dashboard
+
+        </a>
+
+
+        <a href="/admin/students"
+           class="block px-4 py-3 rounded-lg
+                  bg-blue-600">
+
+            Students
+
+        </a>
+
+
+        <a href="#"
+           class="block px-4 py-3 rounded-lg
+                  hover:bg-slate-800">
+
+            Companies
+
+        </a>
+
+
+        <a href="#"
+           class="block px-4 py-3 rounded-lg
+                  hover:bg-slate-800">
+
+            Jobs
+
+        </a>
+
+
+        <a href="#"
+           class="block px-4 py-3 rounded-lg
+                  hover:bg-slate-800">
+
+            Applications
+
+        </a>
+
+    </nav>
+
+
+    <div class="absolute bottom-6 left-6 right-6">
+
+        <a href="/admin/logout"
+           class="block text-center
+                  bg-red-500 hover:bg-red-600
+                  px-4 py-3 rounded-lg">
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<main class="ml-64 p-8">
+
+
+    <!-- HEADER -->
+
+    <div class="flex justify-between
+                items-center mb-8">
+
+        <div>
+
+            <h2 class="text-3xl font-bold
+                       text-slate-900">
+
+                Student Management
+
+            </h2>
+
+
+            <p class="text-slate-500 mt-1">
+
+                Search and manage registered students
+
+            </p>
+
+        </div>
+
+
+        <a href="/admin/dashboard"
+           class="bg-slate-900 text-white
+                  px-5 py-3 rounded-lg
+                  hover:bg-slate-800">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <div class="bg-white rounded-xl
+                shadow-sm p-6 mb-6">
+
+        <form action="/admin/students"
+              method="GET"
+              class="flex gap-3">
+
+            <input
+                type="text"
+                name="search"
+                value="{{ search }}"
+                placeholder="Search by name or email..."
+                class="flex-1 border border-slate-300
+                       rounded-lg px-4 py-3
+                       focus:outline-none
+                       focus:ring-2
+                       focus:ring-blue-500">
+
+
+            <button
+                type="submit"
+                class="bg-blue-600
+                       hover:bg-blue-700
+                       text-white px-6
+                       rounded-lg">
+
+                🔍 Search
+
+            </button>
+
+
+            {% if search %}
+
+            <a href="/admin/students"
+               class="bg-slate-200
+                      hover:bg-slate-300
+                      px-6 py-3
+                      rounded-lg">
+
+                Clear
+
+            </a>
+
+            {% endif %}
+
+        </form>
+
+    </div>
+
+
+
+    <!-- =========================
+         STUDENT COUNT
+    ========================= -->
+
+    <div class="bg-white rounded-xl
+                shadow-sm p-6 mb-6">
+
+        <p class="text-sm text-slate-500">
+
+            {% if search %}
+
+                Search Results
+
+            {% else %}
+
+                Total Registered Students
+
+            {% endif %}
+
+        </p>
+
+
+        <p class="text-3xl font-bold
+                  text-slate-900 mt-2">
+
+            {{ students|length }}
+
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         STUDENT TABLE
+    ========================= -->
+
+    <div class="bg-white rounded-xl
+                shadow-sm overflow-hidden">
+
+
+        <div class="p-6 border-b">
+
+            <h3 class="text-xl font-semibold">
+
+                Students
+
+            </h3>
+
+        </div>
+
+
+
+        {% if students %}
+
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full">
+
+
+                <thead class="bg-slate-50">
+
+                    <tr>
+
+                        <th class="text-left px-6 py-4
+                                   text-sm font-semibold">
+
+                            ID
+
+                        </th>
+
+
+                        <th class="text-left px-6 py-4
+                                   text-sm font-semibold">
+
+                            Name
+
+                        </th>
+
+
+                        <th class="text-left px-6 py-4
+                                   text-sm font-semibold">
+
+                            Email
+
+                        </th>
+
+
+                        <th class="text-left px-6 py-4
+                                   text-sm font-semibold">
+
+                            Resume
+
+                        </th>
+
+
+                        <th class="text-left px-6 py-4
+                                   text-sm font-semibold">
+
+                            Actions
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody class="divide-y">
+
+
+                    {% for student in students %}
+
+
+                    <tr class="hover:bg-slate-50">
+
+
+                        <!-- ID -->
+
+                        <td class="px-6 py-4">
+
+                            {{ student['id'] }}
+
+                        </td>
+
+
+
+                        <!-- NAME -->
+
+                        <td class="px-6 py-4
+                                   font-medium">
+
+                            {{ student['name'] }}
+
+                        </td>
+
+
+
+                        <!-- EMAIL -->
+
+                        <td class="px-6 py-4
+                                   text-slate-600">
+
+                            {{ student['email'] }}
+
+                        </td>
+
+
+
+                        <!-- RESUME -->
+
+                        <td class="px-6 py-4">
+
+                            {% if student['resume'] %}
+
+                            <a
+                                href="/static/uploads/{{ student['resume'] }}"
+                                target="_blank"
+                                class="text-blue-600
+                                       hover:underline">
+
+                                📄 View Resume
+
+                            </a>
+
+                            {% else %}
+
+                            <span class="text-slate-400">
+
+                                No Resume
+
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- ACTIONS -->
+
+                        <td class="px-6 py-4">
+
+
+                            <div class="flex gap-2">
+
+
+                                <!-- VIEW -->
+
+                                <a
+                                    href="/admin/student/{{ student['id'] }}"
+                                    class="bg-blue-100
+                                           text-blue-700
+                                           px-3 py-2
+                                           rounded-lg
+                                           hover:bg-blue-200">
+
+                                    👁 View
+
+                                </a>
+
+
+
+                                <!-- DELETE -->
+
+                                <form
+                                    action="/admin/student/delete/{{ student['id'] }}"
+                                    method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this student?');">
+
+                                    <button
+                                        type="submit"
+                                        class="bg-red-100
+                                               text-red-700
+                                               px-3 py-2
+                                               rounded-lg
+                                               hover:bg-red-200">
+
+                                        🗑 Delete
+
+                                    </button>
+
+                                </form>
+
+
+                            </div>
+
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- NO STUDENTS -->
+
+        <div class="p-12 text-center">
+
+
+            <div class="text-5xl mb-4">
+
+                👨‍🎓
+
+            </div>
+
+
+            <h3 class="text-xl font-semibold">
+
+                {% if search %}
+
+                    No Student Found
+
+                {% else %}
+
+                    No Students Registered
+
+                {% endif %}
+
+            </h3>
+
+
+            <p class="text-slate-500 mt-2">
+
+                {% if search %}
+
+                    Try another name or email.
+
+                {% else %}
+
+                    Students will appear here
+                    after registration.
+
+                {% endif %}
+
+            </p>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="text-center
+                   text-slate-400
+                   text-sm mt-8">
+
+        SixSense Coders —
+        Academia-Industry Connect
+
+    </footer>
+
+
+</main>
+
+
+</body>
+
+</html>
