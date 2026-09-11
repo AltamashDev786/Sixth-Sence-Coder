@@ -1,32 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Login - Sixth Sence Coder</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-        body { background: linear-gradient(135deg, #667eea, #764ba2); height:100vh; display:flex; justify-content:center; align-items:center; }
-        .card { background:white; padding:40px; border-radius:15px; width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
-        h1 { text-align:center; margin-bottom:25px; color:#333; }
-        p { margin:10px 0 5px; font-weight:bold; color:#555; }
-        input { width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline:none; }
-        button { width:100%; margin-top:20px; padding:12px; background:#667eea; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; }
-        button:hover { background:#5a6fd6; }
-        .link { text-align:center; margin-top:15px; }
-        .link a { color:#667eea; text-decoration:none; font-weight:bold; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - SixthSense</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>body{font-family:'Poppins',sans-serif;}</style>
 </head>
-<body>
-    <div class="card">
-        <h1>Student Login</h1>
-        <form action="/login" method="POST">
-            <p>Email:</p>
-            <input type="email" name="email" required placeholder="Enter your email">
-            <p>Password:</p>
-            <input type="password" name="password" required placeholder="Enter password">
-            <button type="submit">Login</button>
-        </form>
-        <p class="link">New user? <a href="/register">Sign Up</a></p>
+<body class="bg-white min-h-screen flex">
+
+<!-- LEFT BLUE PART - Same as Register -->
+<div class="hidden md:flex w-[45%] bg-[#0d8bf2] flex-col justify-between p-10 text-white">
+  <div>
+    <h1 class="text-3xl font-bold flex items-center gap-2">👁️ SixthSense</h1>
+  </div>
+  <div class="bg-white rounded-2xl p-4">
+    <img src="{{ url_for('static', filename='student.jpg') }}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135755.png'" class="w-full rounded-xl" alt="students">
+  </div>
+  <div>
+    <h2 class="text-3xl font-bold">Learn. Discover. Grow.</h2>
+    <p class="text-blue-100 text-sm mt-2">Join thousands of learners building skills for the future.</p>
+  </div>
+</div>
+
+<!-- RIGHT LOGIN FORM PART -->
+<div class="w-full md:w-[55%] p-8 md:p-16 flex flex-col justify-center">
+  <h1 class="text-4xl font-bold text-gray-800">Welcome Back</h1>
+  <p class="text-gray-500 mt-2 mb-8">Login to continue your journey</p>
+
+  <form action="/login" method="POST" class="space-y-5">
+    
+    <div>
+      <label class="text-sm font-semibold">Email or Username</label>
+      <input type="text" name="email" placeholder="you@example.com / abc123@gmail.com" class="w-full mt-1 p-3 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" required>
     </div>
+
+    <div>
+      <label class="text-sm font-semibold">Password</label>
+      <input type="password" name="password" placeholder="........" class="w-full mt-1 p-3 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" required>
+    </div>
+
+    <div class="flex justify-between items-center text-sm">
+      <label class="flex items-center gap-2"><input type="checkbox" class="rounded"> Remember me</label>
+      <a href="#" class="text-blue-600 font-semibold">Forgot Password?</a>
+    </div>
+
+    <button type="submit" class="w-full bg-[#0d8bf2] text-white py-3.5 rounded-full font-bold text-lg shadow-lg hover:bg-blue-700">
+      Login Now
+    </button>
+
+    <p class="text-center text-sm text-gray-500 mt-4">
+      Don't have an account? <a href="/register" class="text-blue-600 font-bold">Register</a>
+    </p>
+  </form>
+</div>
+
 </body>
 </html>
