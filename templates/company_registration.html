@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Company Registration</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            padding: 40px 15px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #00a6ff;
+        }
+
+        label {
+            display: block;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .required {
+            color: red;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #00a6ff;
+            box-shadow: 0 0 0 2px rgba(0, 166, 255, 0.10);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .error {
+            background: #ffe5e5;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 7px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .register-btn {
+            width: 100%;
+            margin-top: 30px;
+            padding: 14px;
+            background: #00a6ff;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            background: #008ed6;
+        }
+
+        .login {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .login a {
+            color: #008ed6;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h1>Company Registration</h1>
+
+            <p class="subtitle">
+                Create your company account
+            </p>
+
+            <!-- Error Message -->
+            {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+            {% endif %}
+
+
+            <form method="POST">
+
+                <!-- ================= COMPANY DETAILS ================= -->
+
+                <div class="section-title">
+                    Company Details
+                </div>
+
+                <label>
+                    Company Name <span class="required">*</span>
+                </label>
+
+                <input type="text" name="cname" placeholder="Enter company name" required>
+
+
+                <label>
+                    Company Email <span class="required">*</span>
+                </label>
+
+                <input type="email" name="email" placeholder="company@example.com" required>
+
+
+                <label>
+                    Phone Number <span class="required">*</span>
+                </label>
+
+                <input type="tel" name="phone" placeholder="Enter phone number" required>
+
+
+                <div class="row">
+
+                    <div>
+                        <label>
+                            Company Type
+                        </label>
+
+                        <select name="company_type">
+
+                            <option value="">
+                                Select Company Type
+                            </option>
+
+                            <option value="Private Limited">
+                                Private Limited
+                            </option>
+
+                            <option value="Public Limited">
+                                Public Limited
+                            </option>
+
+                            <option value="Startup">
+                                Startup
+                            </option>
+
+                            <option value="Partnership">
+                                Partnership
+                            </option>
+
+                            <option value="Government">
+                                Government
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Industry
+                        </label>
+
+                        <input type="text" name="industry" placeholder="e.g. Information Technology">
+
+                    </div>
+
+                </div>
+
+
+                <label>
+                    Company Website
+                </label>
+
+                <input type="url" name="website" placeholder="https://www.example.com">
+
+
+                <label>
+                    Company Address
+                </label>
+
+                <textarea name="address" placeholder="Enter complete company address"></textarea>
+
+
+                <div class="row">
+
+                    <div>
+
+                        <label>
+                            City
+                        </label>
+
+                        <input type="text" name="city" placeholder="Enter city">
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            State
+                        </label>
+
+                        <input type="text" name="state" placeholder="Enter state">
+
+                    </div>
+
+                </div>
+
+
+                <label>
+                    PIN Code
+                </label>
+
+                <input type="text" name="pincode" placeholder="Enter PIN code">
+
+
+                <label>
+                    Company Description
+                </label>
+
+                <textarea name="description" placeholder="Tell us about your company, work and services"></textarea>
+
+
+
+                <!-- ================= RECRUITER DETAILS ================= -->
+
+                <div class="section-title">
+                    HR / Recruiter Details
+                </div>
+
+
+                <label>
+                    HR / Recruiter Name <span class="required">*</span>
+                </label>
+
+                <input type="text" name="recruiter_name" placeholder="Enter HR / Recruiter name" required>
+
+
+                <label>
+                    Designation
+                </label>
+
+                <input type="text" name="designation" placeholder="e.g. HR Manager / Recruiter">
+
+
+                <label>
+                    Recruiter Email <span class="required">*</span>
+                </label>
+
+                <input type="email" name="recruiter_email" placeholder="hr@example.com" required>
+
+
+                <label>
+                    Recruiter Phone
+                </label>
+
+                <input type="tel" name="recruiter_phone" placeholder="Enter recruiter phone number">
+
+
+                <label>
+                    LinkedIn Profile
+                </label>
+
+                <input type="url" name="linkedin" placeholder="https://www.linkedin.com/in/example">
+
+
+
+                <!-- ================= LOGIN DETAILS ================= -->
+
+                <div class="section-title">
+                    Login Details
+                </div>
+
+
+                <label>
+                    Password <span class="required">*</span>
+                </label>
+
+                <input type="password" name="password" placeholder="Create password" minlength="6" required>
+
+
+                <label>
+                    Confirm Password <span class="required">*</span>
+                </label>
+
+                <input type="password" name="confirm_password" placeholder="Confirm your password" minlength="6"
+                    required>
+
+
+                <!-- ================= SUBMIT ================= -->
+
+                <button type="submit" class="register-btn">
+
+                    Create Company Account
+
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN OPTION -->
+
+            <div class="login">
+
+                Already have an account?
+
+                <a href="/company/login">
+                    Login to Company Panel
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
