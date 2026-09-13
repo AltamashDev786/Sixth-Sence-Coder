@@ -1,38 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Registration</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create your account - SixthSense</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{display:flex;min-height:100vh}
+.left{
+ width:45%;background:linear-gradient(135deg,#0052ff 0%,#0066ff 50%,#0090d0 100%);
+ color:white;display:flex;flex-direction:column;justify-content:space-between;
+ padding:50px;position:relative;overflow:hidden;
+}
+.left::before{
+ content:'';position:absolute;top:-10%;left:-10%;width:120%;height:60%;
+ background:linear-gradient(110deg,rgba(255,255,255,0.15) 0%,transparent 60%);
+ transform:rotate(-5deg);
+}
+.logo{display:flex;align-items:center;gap:12px;font-size:38px;font-weight:800;z-index:1}
+.logo-icon{width:58px;height:58px;border:2px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px}
+.left-center{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;z-index:1}
+.left-center img{
+ width:100%;max-width:420px;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+}
+.left-bottom{z-index:1}
+.left-bottom h2{font-size:32px;font-weight:800;margin-bottom:8px}
+.left-bottom p{font-size:14px;opacity:0.85}
 
+.right{width:55%;background:white;display:flex;justify-content:center;align-items:center;padding:30px;overflow-y:auto}
+.form-box{width:100%;max-width:540px}
+.form-box h1{font-size:42px;font-weight:800;color:#0a1931;line-height:1}
+.form-box .sub{color:#6b7280;font-size:16px;margin:8px 0 22px 0}
+label{font-size:13px;font-weight:700;color:#111;display:block;margin:12px 0 6px 0}
+.input-wrap{position:relative}
+.input-wrap span{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;opacity:0.7}
+.input-wrap input, .input-wrap select{
+ width:100%;padding:11px 12px 11px 36px;border:1.5px solid #d1d5db;border-radius:10px;
+ font-size:14px;outline:none;background:white;
+}
+.input-wrap input:focus, .input-wrap select:focus{border-color:#0052ff}
+.row{display:flex;gap:14px}.row>div{flex:1}
+.terms{display:flex;align-items:center;gap:8px;margin:18px 0;font-size:13px}
+.terms input{width:16px;height:16px}
+.terms a{color:#0a1931;font-weight:600;text-decoration:underline}
+.btn{
+ width:100%;padding:14px;background:#0052ff;color:white;border:none;
+ border-radius:999px;font-size:16px;font-weight:700;cursor:pointer;margin-top:6px;
+ box-shadow:0 8px 20px rgba(0,82,255,0.3)
+}
+.login-link{text-align:center;margin-top:18px;font-size:14px;color:#333}
+.login-link a{font-weight:700;color:#0a1931;text-decoration:underline}
+@media(max-width:900px){body{flex-direction:column}.left,.right{width:100%}.left{height:380px;padding:25px}.form-box h1{font-size:32px}}
+</style>
+</head>
 <body>
 
-    <h1>Student Registration</h1>
+<div class="left">
+ <div class="logo"><div class="logo-icon">👁️</div> SixthSense</div>
+ <div class="left-center">
+   <img src="{{ url_for('static', filename='student.jpg') }}" alt="students">
+ </div>
+ <div class="left-bottom">
+   <h2>Learn. Discover. Grow.</h2>
+   <p>Join thousands of learners building skills for the future.</p>
+ </div>
+</div>
 
-    <form method="POST" action="/register" enctype="multipart/form-data">
+<div class="right">
+ <div class="form-box">
+  <h1>Create your account</h1>
+  <p class="sub">Fill in your details to get started</p>
+  
+  <form method="POST" action="/register">
+   <label>Full Name</label>
+   <div class="input-wrap"><span>👤</span><input type="text" name="fullname" placeholder="Enter your full name" required></div>
 
-        <label>Name:</label>
-        <input type="text" name="name" required>
+   <div class="row">
+    <div><label>Email</label><div class="input-wrap"><span>✉️</span><input type="email" name="email" placeholder="you@example.com" required></div></div>
+    <div><label>Mobile</label><div class="input-wrap"><span>📞</span><input type="tel" name="mobile" placeholder="+1 (555) 000-0000" required></div></div>
+   </div>
 
-        <br><br>
+   <label>Username (optional)</label>
+   <div class="input-wrap"><span>@</span><input type="text" name="username" placeholder="Choose a username"></div>
 
-        <label>Email:</label>
-        <input type="email" name="email" required>
+   <div class="row">
+    <div><label>Password</label><div class="input-wrap"><span>🔒</span><input type="password" name="password" placeholder="........" required></div></div>
+    <div><label>Confirm Password</label><div class="input-wrap"><span>🔒</span><input type="password" name="confirm" placeholder="........" required></div></div>
+   </div>
 
-        <br><br>
+   <div class="row">
+    <div><label>Date of Birth</label><div class="input-wrap"><span>📅</span><input type="date" name="dob" required></div></div>
+    <div><label>Gender</label><div class="input-wrap"><span>📍</span><select name="gender" required><option value="">Select gender</option><option>Male</option><option>Female</option><option>Other</option></select></div></div>
+   </div>
 
-        <label>Password:</label>
-        <input type="password" name="password" required>
+   <div class="row">
+    <div><label>City</label><div class="input-wrap"><span>📍</span><input type="text" name="city" placeholder="Enter your city" required></div></div>
+    <div><label>State</label><div class="input-wrap"><span>📍</span><input type="text" name="state" placeholder="Enter your state" required></div></div>
+   </div>
 
-        <br><br>
+   <div class="terms"><input type="checkbox" required> <span>I agree to the <a href="#">Terms & Privacy Policy</a></span></div>
 
-        <label>Resume:</label>
-        <input type="file" name="resume" accept=".pdf,.doc,.docx">
+   <button type="submit" class="btn">Register Now</button>
+  </form>
 
-        <br><br>
-
-        <button type="submit">Register</button>
-
-    </form>
+  <p class="login-link">Already have an account? <a href="/login">Log in</a></p>
+ </div>
+</div>
 
 </body>
 </html>
