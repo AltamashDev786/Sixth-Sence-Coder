@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Successful</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .success-box {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        .check {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #22c55e;
+            color: white;
+            font-size: 50px;
+            line-height: 80px;
+        }
+
+        h1 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .welcome {
+            font-size: 19px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .email {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 7px;
+            margin-bottom: 25px;
+            color: #333;
+            word-break: break-word;
+        }
+
+        .login-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #00a6ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .login-btn:hover {
+            background: #008ed6;
+        }
+
+        .companies-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #008ed6;
+            text-decoration: none;
+        }
+
+        .companies-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="success-box">
+
+        <div class="check">
+            ✓
+        </div>
+
+        <h1>Registration Successful!</h1>
+
+        <p class="welcome">
+            Welcome, <strong>{{ cname }}</strong>!
+        </p>
+
+        <p class="message">
+            Your company account has been successfully registered.
+            You can now login to your Company Panel and start hiring students.
+        </p>
+
+        <div class="email">
+            <strong>Registered Email:</strong><br>
+            {{ email }}
+        </div>
+
+        <a href="/company/login" class="login-btn">
+            Login to Company Panel
+        </a>
+
+        <a href="/companies" class="companies-link">
+            View All Companies
+        </a>
+
+    </div>
+
+</body>
+
+</html>

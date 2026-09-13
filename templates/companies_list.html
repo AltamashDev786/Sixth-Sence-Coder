@@ -1,0 +1,9 @@
+<h2>All Companies for Students</h2>
+{% for c in companies %}
+<div style="border:1px solid blue; padding:10px; margin:10px;">
+    <h3>{{ c['company_name'] }} - {{ c['industry'] }}</h3>
+    <p>{{ c['description'] }}</p>
+    <p>Email: {{ c['email'] }}</p>
+    <button>Apply Now</button>
+</div>
+{% endfor %}
