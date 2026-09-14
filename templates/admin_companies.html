@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Companies - Admin Panel</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-white min-h-screen">
+
+    <!-- NAVBAR -->
+
+    <nav class="bg-slate-900 border-b border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+            <h1 class="text-xl font-bold">
+                🧠 SixSense Coders
+            </h1>
+
+            <div class="flex items-center gap-4">
+
+                <a href="/admin/dashboard"
+                    class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold">
+                    Dashboard
+                </a>
+
+                <a href="/admin/logout"
+                    class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-semibold">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="max-w-7xl mx-auto px-6 py-10">
+
+        <div class="mb-8">
+
+            <p class="text-blue-400 font-semibold">
+                ADMIN PANEL
+            </p>
+
+            <h2 class="text-4xl font-extrabold mt-2">
+                🏢 Registered Companies
+            </h2>
+
+            <p class="text-slate-400 mt-2">
+                Manage and view all registered companies.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <section class="bg-slate-900 border border-white/10 rounded-2xl p-6 mb-8">
+
+            <form action="/admin/companies" method="GET"
+                class="flex flex-col md:flex-row gap-4">
+
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ search }}"
+                    placeholder="Search company, email or industry..."
+                    class="flex-1 bg-slate-800 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-blue-500"
+                >
+
+                <button
+                    type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl font-bold">
+                    🔍 Search
+                </button>
+
+                <a
+                    href="/admin/companies"
+                    class="bg-slate-700 hover:bg-slate-600 px-8 py-3 rounded-xl font-bold text-center">
+                    Reset
+                </a>
+
+            </form>
+
+        </section>
+
+
+        <!-- COMPANY COUNT -->
+
+        <div class="mb-6">
+
+            <h3 class="text-xl font-bold">
+                Total Companies:
+                <span class="text-blue-400">
+                    {{ companies|length }}
+                </span>
+            </h3>
+
+        </div>
+
+
+        <!-- COMPANIES -->
+
+        {% if companies %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {% for company in companies %}
+
+            <div class="bg-slate-900 border border-white/10 rounded-2xl p-6">
+
+                <!-- COMPANY NAME -->
+
+                <div class="flex justify-between items-start gap-4">
+
+                    <div>
+
+                        <h3 class="text-2xl font-bold">
+                            {{ company['company_name'] }}
+                        </h3>
+
+                        <p class="text-blue-400 mt-1">
+                            {{ company['industry'] or 'Industry not specified' }}
+                        </p>
+
+                    </div>
+
+                    <div class="bg-blue-600/20 text-blue-400 px-3 py-2 rounded-lg text-sm font-bold">
+
+                        {{ company['internship_count'] }}
+                        Internship{% if company['internship_count'] != 1 %}s{% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- DETAILS -->
+
+                <div class="mt-6 space-y-3 text-slate-300">
+
+                    <p>
+                        📧
+                        <strong>Email:</strong>
+                        {{ company['email'] }}
+                    </p>
+
+                    <p>
+                        📞
+                        <strong>Phone:</strong>
+                        {{ company['phone'] or 'Not provided' }}
+                    </p>
+
+                    <p>
+                        📍
+                        <strong>Location:</strong>
+
+                        {% if company['city'] %}
+                            {{ company['city'] }}
+                        {% endif %}
+
+                        {% if company['state'] %}
+                            , {{ company['state'] }}
+                        {% endif %}
+
+                        {% if not company['city'] and not company['state'] %}
+                            Not provided
+                        {% endif %}
+                    </p>
+
+                    <p>
+                        👤
+                        <strong>Recruiter:</strong>
+                        {{ company['recruiter_name'] or 'Not provided' }}
+                    </p>
+
+                    {% if company['website'] %}
+
+                    <p>
+                        🌐
+                        <strong>Website:</strong>
+
+                        <a
+                            href="{{ company['website'] }}"
+                            target="_blank"
+                            class="text-blue-400 hover:underline">
+                            {{ company['website'] }}
+                        </a>
+
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                {% if company['description'] %}
+
+                <div class="mt-6">
+
+                    <p class="text-slate-400 text-sm mb-2">
+                        Description
+                    </p>
+
+                    <p class="text-slate-300 leading-relaxed">
+                        {{ company['description'] }}
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- COMPANY ID -->
+
+                <div class="mt-6 pt-4 border-t border-white/10">
+
+                    <p class="text-slate-500 text-sm">
+                        Company ID: {{ company['id'] }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="bg-slate-900 border border-white/10 rounded-2xl p-10 text-center">
+
+            <p class="text-slate-400 text-lg">
+                No companies found.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="border-t border-white/10 mt-10 py-6">
+
+        <p class="text-center text-slate-500 text-sm">
+            © 2026 SixSense Coders • Academia-Industry Connect
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
